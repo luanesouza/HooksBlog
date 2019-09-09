@@ -5,12 +5,18 @@ import PostForm from './PostForm';
 
 function Main(props) {
 
-    const post = props.posts.map( data => {return <PostContent key={data.id} content={data.content} title={data.title} />})
+    const post = props.posts.map( data => {return <PostContent key={data.name} content={data.content} title={data.title} />})
 
     return (
       <>
-        <h1> {post} </h1>
-        <PostForm />
+        <h1 id={post.id}> {post} </h1>
+
+        <PostForm
+        createPost={props.createPost}
+        formData={props.formData}
+        handleChange={props.handleChange}
+        handleSubmit={props.handleSubmit}/>
+
       </>
     );
 }

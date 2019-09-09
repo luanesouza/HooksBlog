@@ -2,7 +2,6 @@ import React from 'react';
 
 
 function PostContent(props) {
-  console.log(props);
   const { title, content } = props;
 
   return (
