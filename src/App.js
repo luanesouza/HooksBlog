@@ -43,20 +43,28 @@ class App extends Component {
       newPost(this.state.formData)
   }
 
-  removePost = (e, clickedPost) => {
-    const {posts} = this.state
-    console.log('clicked on post', clickedPost);
-    const filteredPostsArray = posts.filter((post) => {
-      if (post !== clickedPost){
-        return clickedPost;
-      } else {
-        console.log('Post not found');
-      }
-    })
+   removePost = async (e, clickedPost) => {
+    await deletePost(clickedPost.id)
+
+    const posts = await postData();
+
     this.setState ({
-      posts: filteredPostsArray
+      posts
     })
-    deletePost(clickedPost.id)
+    
+    // const {posts} = this.state
+    // console.log('clicked on post', clickedPost);
+    // const filteredPostsArray = posts.filter((post) => {
+    //   if (post !== clickedPost){
+    //     return clickedPost;
+    //   } else {
+    //     console.log('Post not found');
+    //   }
+    // })
+    // this.setState ({
+    //   posts: filteredPostsArray
+    // })
+    // deletePost(clickedPost.id)
   }
 
   handleChange = (e) => {
@@ -68,6 +76,10 @@ class App extends Component {
       }
     })
   )}
+
+  handleUpdate = () => {
+
+  }
 
   handleSubmit(e) {
     e.preventDefault()
