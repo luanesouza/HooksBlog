@@ -43,9 +43,20 @@ class App extends Component {
       newPost(this.state.formData)
   }
 
-  removePost = (e, id) => {
+  removePost = (e, clickedPost) => {
     const {posts} = this.state
-    deletePost(id)
+    console.log('clicked on post', clickedPost);
+    const filteredPostsArray = posts.filter((post) => {
+      if (post !== clickedPost){
+        return clickedPost;
+      } else {
+        console.log('Post not found');
+      }
+    })
+    this.setState ({
+      posts: filteredPostsArray
+    })
+    deletePost(clickedPost.id)
   }
 
   handleChange = (e) => {

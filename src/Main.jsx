@@ -4,7 +4,7 @@ import PostForm from './PostForm';
 
 
 function Main(props) {
-    const post = props.posts.map( data => {return <PostContent removePost={props.removePost} id={data.id} key={data.id} content={data.content} title={data.title} />})
+    const post = props.posts.map( data => {return <PostContent removePost={props.removePost} id={data.id} post={data} key={data.id} content={data.content} title={data.title} />})
 
     return (
       <>
