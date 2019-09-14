@@ -9,18 +9,28 @@ const postData = async () => {
     return postData.data
   }
   catch(e){
-    console.log(e);
+    console.error(e);
   }
 }
 
 const newPost = (data) => {
-  console.log('called', data);
   try {
-    const newPostData = axios.post(`${BASE_URL}posts`, data)
+    axios.post(`${BASE_URL}posts`, data)
   }
   catch(e) {
-    console.log(e);
+    console.error(e);
   }
 }
 
-export { postData, newPost }
+const deletePost = (id) => {
+  console.log('delete clicked');
+  try {
+    axios.delete(`${BASE_URL}posts/${id}`)
+  }
+  catch(e){
+    console.error(e);
+  }
+  postData()
+}
+
+export { postData, newPost, deletePost }

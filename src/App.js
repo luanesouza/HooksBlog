@@ -1,8 +1,8 @@
 import React from 'react';
 import { Component } from 'react';
 import Main from './Main';
-import api_helper from './services/api_helper';
-import { postData, newPost } from './services/api_helper'
+// import api_helper from './services/api_helper';
+import { postData, newPost, deletePost } from './services/api_helper'
 import './App.css';
 
 class App extends Component {
@@ -34,12 +34,18 @@ class App extends Component {
   createPost = () => {
     const title = this.state.formData.title
     const content = this.state.formData.content
-    if(title === '' && content === ''){
 
+    if(title === '' && content === ''){
       console.log('insert a title and content');
     }
+
     else
       newPost(this.state.formData)
+  }
+
+  removePost = (e, id) => {
+    const {posts} = this.state
+    deletePost(id)
   }
 
   handleChange = (e) => {
@@ -55,6 +61,7 @@ class App extends Component {
   handleSubmit(e) {
     e.preventDefault()
     this.setState({ posts: [...this.state.posts, this.state.formData] })
+
     this.setState({
       formData: {
         title: '',
@@ -64,11 +71,17 @@ class App extends Component {
   }
 
   render() {
-
     const { posts, formData } = this.state
+
     return (
       <div>
-        <Main createPost={this.createPost} handleSubmit={this.handleSubmit} formData={formData} handleChange={this.handleChange} posts={posts}/>
+        <Main
+          removePost={this.removePost}
+          createPost={this.createPost}
+          handleSubmit={this.handleSubmit}
+          formData={formData}
+          handleChange={this.handleChange}
+          posts={posts}/>
       </div>
     )
 
