@@ -8,6 +8,7 @@ function PostContent(props) {
     <main className="postContent">
       <h3>{title}</h3>
       <p>{content}</p>
+      
       <button  onClick={(e) => removePost(e, post)}> Remove Post </button>
     </main>
   )
